@@ -1,0 +1,15 @@
+# Run the following commands in the terminal to create and apply the migration
+dotnet ef migrations add AddUsersTable
+# Ensure migrations are applied to create the User table in the net9buy database
+dotnet ef database update
+
+# Verify the connection string in appsettings.json or environment variables
+# Ensure the database is accessible and migrations are applied
+dotnet ef database update
+
+# Ensure the database is updated with the latest schema
+dotnet ef database update
+
+-- Add new columns to the Products table
+ALTER TABLE Products ADD SellerId INT NOT NULL;
+ALTER TABLE Products ADD BuyerId INT NULL;

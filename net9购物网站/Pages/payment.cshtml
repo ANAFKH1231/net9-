@@ -1,0 +1,27 @@
+﻿@page "/payment/{id:int}"  
+@model net9购物网站.Pages.PaymentModel  
+@{  
+   ViewData["Title"] = "支付页面";  
+}  
+
+<h1>支付页面</h1>  
+
+@if (Model.Product != null)  
+{  
+   <p>商品名称: @Model.Product.Name</p>  
+   <p>价格: ¥@Model.Product.Price</p>  
+}  
+else  
+{  
+   <p>商品信息不可用。</p>  
+}  
+
+<form method="post">  
+   @Html.AntiForgeryToken()  
+   <button type="submit">确认支付</button>  
+</form>  
+
+@if (Model.Message != null)  
+{  
+   <p>@Model.Message</p>  
+}

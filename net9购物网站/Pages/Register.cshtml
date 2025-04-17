@@ -1,0 +1,30 @@
+﻿@page
+@model net9购物网站.Pages.RegisterModel
+@{
+    ViewData["Title"] = "用户注册";
+}
+
+<h1>用户注册</h1>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label for="username">用户名:</label>
+        <input type="text" id="username" name="User.Username" required />
+    </div>
+    <div>
+        <label for="password">密码:</label>
+        <input type="password" id="password" name="User.Password" required />
+    </div>
+    <div>
+        <label for="email">邮箱 (可选):</label>
+        <input type="email" id="email" name="User.Email" />
+    </div>
+    <button type="submit">注册</button>
+</form>
+
+@if (Model.Message != null)
+{
+    <p>@Model.Message</p>
+}
+

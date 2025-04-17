@@ -1,0 +1,53 @@
+@page "/UserDetail/{id:int}"
+@model net9购物网站.Pages.UserDetailModel
+@{
+    ViewData["Title"] = "用户详情";
+}
+
+<h1>用户详情</h1>
+
+<h2>个人信息</h2>
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label for="username">用户名:</label>
+        <input type="text" id="username" name="User.Username" value="@Model.User.Username" required />
+    </div>
+    <div>
+        <label for="password">密码:</label>
+        <input type="password" id="password" name="User.Password" value="@Model.User.Password" required />
+    </div>
+    <div>
+        <label for="email">邮箱:</label>
+        <input type="email" id="email" name="User.Email" value="@Model.User.Email" />
+    </div>
+    <button type="submit">更新信息</button>
+</form>
+
+@if (Model.Message != null)
+{
+    <p>@Model.Message</p>
+}
+
+<h2>已购买的商品</h2>
+<ul>
+    @foreach (var product in Model.PurchasedProducts)
+    {
+        <li>@product.Name - ¥@product.Price</li>
+    }
+</ul>
+
+<h2>已发布的商品</h2>
+<ul>
+    @foreach (var product in Model.SoldProducts)
+    {
+        <li>@product.Name - ¥@product.Price</li>
+    }
+</ul>
+
+<!-- Logout Button -->
+<form method="post" asp-page-handler="Logout">
+    @Html.AntiForgeryToken()
+    <button type="submit">退出登录</button>
+</form>
+<a href="/showgoods">返回</a>
