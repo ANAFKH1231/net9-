@@ -1,25 +1,44 @@
 ﻿@page "/ProductDetails/{id:int}"
 
-@model net9购物网站.Pages.ProductDetailsModel  
-@{  
-   ViewData["Title"] = "商品详情";  
-}  
+@model net9购物网站.Pages.ProductDetailsModel
+@{
+    ViewData["Title"] = "商品详情";
+}
 
-@if (Model.Product != null)  
-{  
-   <h1>@Model.Product.Name</h1>  
-   <img src="@Model.Product.ImageUrl" alt="@Model.Product.Name" style="width:300px;height:300px;" />  
-   <p>@Model.Product.Description</p>  
-   <p>价格: ¥@Model.Product.Price</p>  
+<link rel="stylesheet" href="/css/style.css" />
 
-@*    <form method="get" asp-page="/Payment" asp-route-id="@Model.Product.Id">  
-       <button type="submit">支付</button>  
-   </form> *@
-    <button onclick="window.location='/payment/@Model.Product.Id'">支付</button>
-}  
-else  
-{  
-   <p>商品信息未找到。</p>  
-}  
+@if (Model.Product != null)
+{
+    <div class="product-details-container">
+        <!-- 图片部分 -->
+        <div class="product-details-image-wrapper">
+            <img src="@Model.Product.ImageUrl" alt="@Model.Product.Name" class="product-details-image" />
+        </div>
 
-<a href="/">返回商品列表</a>
+        <!-- 内容部分 -->
+        <div class="product-details-content">
+            <h1>@Model.Product.Name</h1>
+            <p>@Model.Product.Description</p>
+            <p>价格: ¥@Model.Product.Price</p>
+
+            <!-- 支付按钮 -->
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <button onclick="window.location='/payment/@Model.Product.Id'">支付</button>
+            }
+            else
+            {
+                <button onclick="window.location='/login?returnUrl=/ProductDetails/@Model.Product.Id'">登录后支付</button>
+            }
+        </div>
+    </div>
+
+    <div class="back-to-list">
+        <a href="/">返回商品列表</a>
+    </div>
+}
+else
+{
+    <p>商品信息未找到。</p>
+}
+

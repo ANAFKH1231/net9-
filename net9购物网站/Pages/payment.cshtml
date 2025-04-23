@@ -3,18 +3,24 @@
 @{  
    ViewData["Title"] = "支付页面";  
 }  
-
+<link rel="stylesheet" href="/css/style.css" />
 <h1>支付页面</h1>  
 
-@if (Model.Product != null)  
-{  
-   <p>商品名称: @Model.Product.Name</p>  
-   <p>价格: ¥@Model.Product.Price</p>  
-}  
-else  
-{  
-   <p>商品信息不可用。</p>  
-}  
+
+@if (Model.Product != null)
+{
+    <div class="product-info">
+        <p>商品名称: @Model.Product.Name</p>
+        <p>价格: ¥@Model.Product.Price</p>
+    </div>
+}
+else
+{
+    <div class="product-info">
+        <p>商品信息不可用。</p>
+    </div>
+}
+
 
 <form method="post">  
    @Html.AntiForgeryToken()  

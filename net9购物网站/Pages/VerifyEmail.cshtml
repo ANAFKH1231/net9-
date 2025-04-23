@@ -1,0 +1,22 @@
+﻿@page
+@model net9购物网站.Pages.VerifyEmailModel
+@{
+    ViewData["Title"] = "验证邮箱";
+}
+<link rel="stylesheet" href="/css/style.css" />
+<h1>验证邮箱</h1>
+
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label for="code">验证码:</label>
+        <input type="text" id="code" name="Code" required />
+    </div>
+    <button type="submit">验证</button>
+</form>
+
+@if (Model.Message != null)
+{
+    <p>@Model.Message</p>
+}

@@ -3,8 +3,9 @@
 @{
     ViewData["Title"] = "发布商品";
 }
-
+<link rel="stylesheet" href="/css/style.css" />
 <h1>发布商品</h1>
+
 
 <form method="post" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
@@ -26,7 +27,10 @@
     </div>
     <button type="submit">发布</button>
 </form>
+<div class="link-container">
     <a href="/showgoods">返回</a>
+</div>
+
 
 @if (Model.Message != null)
 {

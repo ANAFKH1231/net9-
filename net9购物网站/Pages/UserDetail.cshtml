@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "用户详情";
 }
-
+<link rel="stylesheet" href="/css/style.css" />
 <h1>用户详情</h1>
 
 <h2>个人信息</h2>
@@ -29,25 +29,29 @@
     <p>@Model.Message</p>
 }
 
-<h2>已购买的商品</h2>
-<ul>
-    @foreach (var product in Model.PurchasedProducts)
-    {
-        <li>@product.Name - ¥@product.Price</li>
-    }
-</ul>
+<div class="product-section">
+    <h2>已购买的商品</h2>
+    <ul>
+        @foreach (var product in Model.PurchasedProducts)
+        {
+            <li>@product.Name - ¥@product.Price</li>
+        }
+    </ul>
+</div>
 
-<h2>已发布的商品</h2>
-<ul>
-    @foreach (var product in Model.SoldProducts)
-    {
-        <li>@product.Name - ¥@product.Price</li>
-    }
-</ul>
+<div class="product-section">
+    <h2>已发布的商品</h2>
+    <ul>
+        @foreach (var product in Model.SoldProducts)
+        {
+            <li>@product.Name - ¥@product.Price</li>
+        }
+    </ul>
+</div>
 
-<!-- Logout Button -->
-<form method="post" asp-page-handler="Logout">
-    @Html.AntiForgeryToken()
-    <button type="submit">退出登录</button>
-</form>
-<a href="/showgoods">返回</a>
+
+<div class="link-container">
+    <a href="/Logout">注销</a>
+    <a href="/showgoods">返回</a>
+</div>
+

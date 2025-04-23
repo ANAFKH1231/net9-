@@ -1,27 +1,32 @@
 ﻿@page
 @model net9购物网站.Pages.LoginModel
+<link rel="stylesheet" href="/css/style.css" />
 @{
     ViewData["Title"] = "用户登录";
 }
+<body class="login-page">
+    <h1>用户登录</h1>
 
-<h1>用户登录</h1>
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div>
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="Username" required />
+        </div>
+        <div>
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="Password" required />
+        </div>
+        <button type="submit">登录</button>
+    </form>
 
-<form method="post">
-    @Html.AntiForgeryToken()
-    <div>
-        <label for="username">用户名:</label>
-        <input type="text" id="username" name="Username" required />
-    </div>
-    <div>
-        <label for="password">密码:</label>
-        <input type="password" id="password" name="Password" required />
-    </div>
-    <button type="submit">登录</button>
-</form>
+    @if (Model.Message != null)
+    {
+        <p>@Model.Message</p>
+    }
 
-@if (Model.Message != null)
-{
-    <p>@Model.Message</p>
-}
+    <p>还没有账号？ <a href="/Register">注册</a></p>
+    <p>通过邮箱登录？ <a href="/EmailLogin">点击这里</a></p>
+</body>
 
-<p>还没有账号？ <a href="/Register">注册</a></p>
+

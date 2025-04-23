@@ -1,0 +1,23 @@
+﻿@page
+@model net9购物网站.Pages.EmailLoginModel
+@{
+    ViewData["Title"] = "邮箱登录";
+}
+<link rel="stylesheet" href="/css/style.css" />
+<h1>邮箱登录</h1>
+
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label for="email">邮箱:</label>
+        <input type="email" id="email" name="Email" required />
+    </div>
+    <button type="submit">发送验证码</button>
+</form>
+
+@if (Model.Message != null)
+{
+    <p>@Model.Message</p>
+}
+

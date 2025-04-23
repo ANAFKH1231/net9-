@@ -1,109 +1,331 @@
-﻿body {
+﻿/* 全局基础样式 */
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
+    color: #333;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+    margin: 0 0 1rem 0;
+}
+
+p {
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+    color: #555;
+}
+
+a {
+    color: #4CAF50; /* 替换为绿色 */
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* 页头样式 */
 header {
-    background-color: #0078d7;
+    background-color: #4CAF50; /* 替换为绿色 */
     color: white;
-    padding: 10px 20px;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.header-container h1 {
-    margin: 0;
-}
+    header a {
+        color: white;
+        margin-left: 1rem;
+        font-size: 1rem;
+    }
 
-.search-box input {
-    padding: 5px;
-    border: none;
-    border-radius: 4px;
-}
+        header a:hover {
+            text-decoration: underline;
+        }
 
-.search-box button {
-    padding: 5px 10px;
-    background-color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.user-info a {
-    color: white;
-    text-decoration: none;
-    margin-left: 10px;
-}
-
-.product-grid {
+/* 主内容样式 */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 一行三个 */
+    gap: 1.5rem; /* 图片之间的间距 */
+    justify-items: center; /* 图片居中对齐 */
 }
 
+/* 表单样式 */
+form {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    form div {
+        margin-bottom: 1rem;
+    }
+
+    form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #555;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="number"],
+    form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    form button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #4CAF50; /* 替换为绿色 */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+        form button:hover {
+            background-color: #388E3C; /* 深绿色悬停效果 */
+        }
+
+/* 商品卡片样式 */
 .product-card {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
 }
 
-.product-image {
-    width: 100%;
-    height: auto;
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: auto;
+        max-height: 200px; /* 限制图片高度 */
+        object-fit: cover; /* 保持图片比例 */
+        border-radius: 8px; /* 圆角 */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+        margin-bottom: 1rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .product-card img:hover {
+            transform: scale(1.05); /* 鼠标悬停时放大 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .product-card h3 {
+        margin: 1rem 0 0.5rem 0;
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    .product-card p {
+        margin: 0.5rem 0;
+        color: #666;
+    }
+
+    .product-card button {
+        background-color: #4CAF50; /* 替换为绿色 */
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .product-card button:hover {
+            background-color: #388E3C; /* 深绿色悬停效果 */
+        }
+
+/* 商品详情页面布局 */
+.product-details-container {
+    display: flex; /* 使用 flexbox 布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    gap: 2rem; /* 图片和内容之间的间距 */
+    max-width: 1200px;
+    margin: 2rem auto; /* 居中页面 */
+    padding: 1rem;
+}
+
+/* 图片部分 */
+.product-details-image-wrapper {
+    flex: 1; /* 图片部分占据 1 份空间 */
+    display: flex;
+    justify-content: center; /* 图片水平居中 */
+}
+
+.product-details-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.product-title {
-    font-size: 18px;
-    margin: 10px 0;
+/* 内容部分 */
+.product-details-content {
+    flex: 2; /* 内容部分占据 2 份空间 */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* 内容之间的间距 */
 }
 
-.product-description {
-    font-size: 14px;
-    color: #555;
+    .product-details-content h1 {
+        font-size: 2rem;
+        color: #333;
+    }
+
+    .product-details-content p {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .product-details-content button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+    }
+
+        .product-details-content button:hover {
+            background-color: #388E3C;
+        }
+
+/* 返回商品列表链接样式 */
+.back-to-list {
+    text-align: center; /* 水平居中 */
+    margin-top: 2rem; /* 与上方内容保持间距 */
 }
 
-.product-price {
-    font-size: 16px;
-    color: #0078d7;
-    font-weight: bold;
+    .back-to-list a {
+        display: inline-block; /* 使链接可以设置 padding 和边框 */
+        padding: 0.5rem 1rem;
+        background-color: #4CAF50; /* 按钮背景色 */
+        color: white; /* 按钮文字颜色 */
+        text-decoration: none; /* 去掉下划线 */
+        border-radius: 4px; /* 圆角 */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+        transition: background-color 0.3s, transform 0.2s; /* 添加过渡效果 */
+    }
+
+        .back-to-list a:hover {
+            background-color: #388E3C; /* 悬停时的背景色 */
+            transform: scale(1.05); /* 悬停时放大 */
+        }
+
+/* 居中对齐的段落样式 */
+.login-page p {
+    text-align: center; /* 水平居中对齐 */
+    margin-top: 1rem; /* 添加适当的间距 */
 }
 
-.product-details {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px;
-    background-color: #0078d7;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
+/* 链接容器样式 */
+.link-container {
+    display: flex; /* 使用 flexbox 布局 */
+    justify-content: center; /* 水平居中 */
+    gap: 1rem; /* 链接之间的间距 */
+    margin-top: 2rem; /* 与上方内容保持间距 */
 }
 
-.floating-cart {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #0078d7;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+/* 商品部分容器样式 */
+.product-section {
+    margin: 2rem auto; /* 上下间距 */
+    padding: 1rem; /* 内边距 */
+    max-width: 800px; /* 最大宽度 */
+    background-color: #f9f9f9; /* 背景颜色 */
+    border: 1px solid #ddd; /* 边框 */
+    border-radius: 8px; /* 圆角 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影 */
 }
 
+    /* 标题样式 */
+    .product-section h2 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 1rem; /* 标题与列表之间的间距 */
+        text-align: center; /* 标题居中 */
+    }
+
+    /* 列表样式 */
+    .product-section ul {
+        list-style-type: none; /* 去掉默认的列表样式 */
+        padding: 0; /* 去掉内边距 */
+        margin: 0; /* 去掉外边距 */
+    }
+
+        .product-section ul li {
+            padding: 0.5rem 1rem; /* 列表项内边距 */
+            border-bottom: 1px solid #ddd; /* 列表项分隔线 */
+            color: #555;
+            display: flex; /* 使用 flex 布局 */
+            justify-content: space-between; /* 左右对齐 */
+            align-items: center; /* 垂直居中 */
+        }
+
+            .product-section ul li:last-child {
+                border-bottom: none; /* 去掉最后一项的分隔线 */
+            }
+
+            .product-section ul li:hover {
+                background-color: #f1f1f1; /* 悬停时的背景色 */
+                cursor: pointer; /* 鼠标悬停时显示手型 */
+            }
+
+
+/* 支付页面商品信息样式 */
+.product-info {
+    text-align: center; /* 水平居中对齐 */
+    margin-top: 2rem; /* 与上方内容保持间距 */
+}
+
+    .product-info p {
+        font-size: 1.2rem; /* 调整字体大小 */
+        color: #333; /* 设置文字颜色 */
+        margin: 0.5rem 0; /* 段落之间的间距 */
+    }
+
+
+/* 页脚样式 */
 footer {
     text-align: center;
-    padding: 10px;
-    background-color: #0078d7;
+    padding: 1rem;
+    background-color: #4CAF50; /* 替换为绿色 */
     color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    margin-top: 2rem;
 }

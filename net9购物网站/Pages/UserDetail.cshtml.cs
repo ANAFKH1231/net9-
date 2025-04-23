@@ -31,14 +31,6 @@ namespace net9购物网站.Pages
 
         public string? Message { get; set; }
 
-        public async Task<IActionResult> OnPostLogoutAsync()
-        {
-            // Clear the authentication cookie
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            // Redirect to the showgoods page
-            return RedirectToPage("/showgoods");
-        }
 
         public void OnGet()
         {
